@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Write What You Feel — I’m Lonely</title>
+    <meta name="description"
+        content="Say anything, anonymously. I’ll read it without judgment. Just you and your feelings — safely shared." />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="icon" type="image/png" href="assets/img/logo.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header"> <!-- Added a wrapper for logo and close button -->
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>I’m Lonely</span>
+            </div>
+            <button id="sidebar-close-btn" class="sidebar-toggle-btn" aria-label="Close sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><a href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="write.html"><i class="fas fa-pen"></i> Write</a></li>
+            <li><a href="call.html"><i class="fas fa-phone"></i> Call</a></li>
+            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="support.html"><i class="fas fa-hand-holding-heart"></i> Support</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <div class="fixed-header"><header class="hero">
+            <h1>I’m Lonely</h1>
+            <p class="tagline">But You’re Not Alone</p>
+        </header></div>
+
+        <main>
+            <section class="write-section">
+                <h2>Say What You Feel</h2>
+                <p class="soft-prompt">
+                    Is it pain? Regret? Love? Guilt? Confusion?
+                    Whatever it is — if it’s in your chest, let it out here.
+                </p>
+
+                <p class="intro-text">
+                    You don’t have to talk to be heard.
+                    This is your space — no name, no login, no pressure.
+                    Just type what’s heavy, and let it go.
+                </p>
+<blockquote class="calm-quote">"Some days, the heaviest thing we carry is silence."</blockquote>
+
+                <form action="https://formspree.io/f/meokyzrg" method="POST" class="write-form">
+                    <textarea name="message" rows="10" placeholder="Start typing your thoughts here..."
+                        required></textarea>
+
+                    <input type="email" name="email"
+                        placeholder="(Optional) Leave your email if you want me to know you" />
+                    <p class="word-limit-note">Write as much or as little as you want. Even one line is enough.</p>
+
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send It</button>
+                    <input type="hidden" name="_redirect" value="http://localhost:5500/html/thankyou.html" />
+
+                </form>
+
+                <p class="privacy-note">
+                    What you write is not stored, shared, or analyzed.
+                    I just read it — and hold space for it. Quietly.
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <small>
+                <nav>
+                    <a href="/html/about.html">Why I Made This</a> |
+                    <a href="/html/support.html">Support This Space</a>
+                </nav>
+            </small>
+
+            <p class="footer-tagline">I'm here to hear.</p>
+        </footer>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
+</body>
+
+</html>

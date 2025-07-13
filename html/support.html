@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support This Space — I’m Lonely</title>
+    <meta name="description"
+        content="This space runs on love, not ads. If it helped you, and you want to keep it alive — here's how to support quietly." />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/logo.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="/assets/img/logo.svg" alt="I’m Lonely Logo" class="logo-img" />
+                <span>I’m Lonely</span>
+            </div>
+
+            <button id="sidebar-close-btn" class="sidebar-toggle-btn" aria-label="Close sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><a href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="write.html"><i class="fas fa-pen"></i> Write</a></li>
+            <li><a href="call.html"><i class="fas fa-phone"></i> Call</a></li>
+            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="support.html"><i class="fas fa-hand-holding-heart"></i> Support</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+        <div class="fixed-header">
+            <header class="hero">
+                <h1>I’m Lonely</h1>
+                <p class="tagline">But You’re Not Alone</p>
+            </header>
+        </div>
+
+        <main>
+            <section class="support-section">
+                <h2>Support This Space</h2>
+
+                <p class="support-intro">
+                    This space isn’t backed by companies.
+                    No ads. No AI. No data collection.
+                    It runs quietly — on honesty, trust, and intention.
+                </p>
+
+                <p class="support-intro">
+                    If this space gave you peace, or helped you feel seen…
+                    and if you're able to — you can support it directly.
+                </p>
+
+                <div class="upi-block">
+                    <!-- Added 'btn' class for consistent styling and passed 'this' to the function -->
+                    <button onclick="toggleQR(this)" class="btn">Show QR Code</button>
+
+                    <!-- 
+      - Removed inline 'style="display: none;"'. The CSS now handles hiding/showing.
+      - Moved the "Copy" button inside this container for better UX.
+    -->
+                    <div id="qr-container">
+                        <img src="/assets/img/upi.jpg" alt="UPI QR Code" class="upi-qr" />
+                        <!-- Changed the span ID for clarity to avoid confusion with the parent's class -->
+                        <p class="upi-id">UPI ID: <span id="upi-id-text">pragadeesh.s96@okicici</span></p>
+
+                        <button onclick="copyUPI()" class="btn copy-btn"><i class="fas fa-copy"></i> Copy UPI
+                            ID</button>
+
+                        <small style="display:block; margin-top:0.5rem;">Use this only if your UPI app doesn't
+                            open</small>
+                    </div>
+
+                    <p class="mobile-note">
+                        <strong>On mobile?</strong> Tap below to open your UPI app:
+                    </p>
+                    <a href="upi://pay?pa=pragadeesh.s96@okicici&pn=Support%20I'm%20Lonely&am=49&tn=Thank%20you%20for%20supporting&cu=INR"
+                        target="_blank" rel="noopener" class="btn upi-pay-btn">
+                        <i class="fas fa-donate"></i> Pay via UPI App
+                    </a>
+                </div>
+
+
+                <p class="note">
+                    No minimum. No tracking. Just gratitude.
+                    Donations go toward call charges, hosting, and building this better.
+                </p>
+
+                <div class="alt-support">
+                    <p><strong>Can’t donate?</strong> That’s okay.</p>
+                    <ul>
+                        <li>Share this space with someone who might need it</li>
+                        <li>Return here when you're low — it's always open</li>
+                    </ul>
+                </div>
+
+                <div class="btn-wrap">
+                    <a href="/index.html" class="btn"><i class="fas fa-arrow-left"></i> Back Home</a>
+                </div>
+            </section>
+        </main>
+
+
+        <footer>
+            <small>
+                <nav>
+                    <a href="/html/about.html">Why I Made This</a> |
+                    <a href="/html/support.html">Support This Space</a>
+                </nav>
+            </small>
+            <p class="footer-tagline">I'm here to hear.</p>
+        </footer>
+    </div>
+
+    <script src="/assets/js/script.js"></script>
+</body>
+
+</html>
