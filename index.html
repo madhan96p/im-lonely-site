@@ -5,66 +5,1040 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="I’m Lonely — But You’re Not Alone. A safe space to speak your feelings, privately and without judgment. No AI. No tracking. Just a human who listens." />
+    content="I'm Lonely — But You're Not Alone. A safe space to speak your feelings, privately and without judgment. No AI. No tracking. Just a human who listens." />
   <meta name="author" content="Pragadeesh" />
   <meta name="robots" content="index, follow" />
-  <title>I’m Lonely — But You’re Not Alone</title>
+  <meta name="theme-color" content="#2d3748" />
+  <title>I'm Lonely — But You're Not Alone</title>
 
   <!-- SEO / Social Sharing -->
-  <meta property="og:title" content="I’m Lonely — But You’re Not Alone" />
+  <meta property="og:title" content="I'm Lonely — But You're Not Alone" />
   <meta property="og:description"
     content="A safe place to share what you're feeling. No judgment. No AI. Just a voice that listens." />
   <meta property="og:image" content="https://yourdomain.com/assets/img/cover.jpg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="stylesheet" href="/assets/css/style.css" />
   <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" />
 
-  <!-- Google Fonts (Optional Premium UI Feel) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap"
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap"
     rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-color: #4a5568;
+      --secondary-color: #68d391;
+      --accent-color: #f7fafc;
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --border-color: #e2e8f0;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.15);
+      --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --crisis-color: #e53e3e;
+      --success-color: #38a169;
+      --warning-color: #d69e2e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Skip Navigation */
+    .skip-nav {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--primary-color);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 1000;
+      transition: top 0.3s;
+    }
+
+    .skip-nav:focus {
+      top: 6px;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-toggle:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .mobile-menu-toggle i {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100vh;
+      background: white;
+      box-shadow: var(--shadow);
+      z-index: 900;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .sidebar.closed {
+      transform: translateX(-100%);
+    }
+
+    .sidebar-header {
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .creator-section .logo-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .sidebar-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-close-btn:hover {
+      background: var(--accent-color);
+      color: var(--primary-color);
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 1rem 0;
+    }
+
+    .sidebar li {
+      margin: 0.25rem 0;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.5rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-radius: 0;
+      position: relative;
+    }
+
+    .sidebar a:hover,
+    .sidebar a:focus {
+      background: var(--accent-color);
+      color: var(--primary-color);
+    }
+
+    .sidebar a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--secondary-color);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar a:hover::before,
+    .sidebar a:focus::before {
+      transform: scaleY(1);
+    }
+
+    /* Page Content */
+    .page-content {
+      margin-left: 280px;
+      min-height: 100vh;
+      transition: margin-left 0.3s ease;
+    }
+
+    .page-content.expanded {
+      margin-left: 0;
+    }
+
+    /* .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #282b32;
+    z-index: 1;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    color: #e4e4e7;
+}
+
+.hero {
+    margin-top: 1px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    z-index: -1;
+} */
+
+    .fixed-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero {
+      text-align: center;
+      /* padding: 3rem 2rem; */
+      background: var(--gradient-bg);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.1;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Crisis Support Banner */
+    .crisis-banner {
+      background: var(--crisis-color);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .crisis-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* General style for sidebar action buttons */
+    .sidebar-toggle-btn {
+      /* This class is on the #sidebar-close-btn */
+      background: transparent;
+      border: none;
+      color: #ecf0f1;
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-toggle-btn:hover {
+      background-color: rgba(236, 240, 241, 0.1);
+      color: #fff;
+    }
+
+    /* Open button (dynamically created by JS, we'll ensure it gets #sidebar-open-btn ID) */
+    #sidebar-open-btn {
+      position: fixed;
+      top: 2rem;
+      left: 1rem;
+      z-index: 10001;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: background 0.2s ease, transform 0.2s ease, opacity 0.3s ease, visibility 0.3s ease;
+      opacity: 0;
+      /* Hidden by default on desktop if sidebar is open */
+      visibility: hidden;
+      transform: translateX(-30px);
+    }
+    
+
+    body.sidebar-closed #sidebar-open-btn {
+      /* Show on desktop when sidebar is closed */
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    #sidebar-open-btn:hover {
+      background: #2980b9;
+      transform: translateX(0) scale(1.05);
+    }
+
+    #sidebar-open-btn i {
+      transition: transform 0.2s ease;
+    }
+
+    #sidebar-open-btn:hover i {
+      transform: rotate(180deg);
+    }
+
+
+    .sidebar ul li a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-gradient);
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .sidebar ul li a:hover::before {
+      left: 0;
+    }
+
+    .sidebar ul li a:hover {
+      color: #fff;
+      transform: translateX(8px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .crisis-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .crisis-text {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .crisis-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .crisis-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      min-width: 160px;
+      justify-content: center;
+    }
+
+    .btn.primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn.primary:hover {
+      background: #2d3748;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .btn.secondary:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 1.5rem;
+    }
+
+    /* Immediate Comfort Section */
+    .comfort-section {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 3rem 0;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+
+    .comfort-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .breathing-exercise {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+      border-radius: 15px;
+      margin: 1rem 0;
+    }
+
+    .breathing-circle {
+      width: 100px;
+      height: 100px;
+      border: 3px solid var(--secondary-color);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      font-weight: 500;
+      animation: breathe 4s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .breathing-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .breathing-btn {
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .breathing-btn:hover {
+      background: #48bb78;
+      transform: translateY(-2px);
+    }
+
+    /* What to Expect Section */
+    .expect-section {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 3rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    .expect-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .expect-timeline {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      background: var(--accent-color);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--secondary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .timeline-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .timeline-content p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* About Creator Section */
+    .creator-section {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 3rem 0;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .creator-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .creator-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      background: var(--gradient-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      font-weight: 600;
+    }
+
+    .creator-content p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Section Styling */
+    .section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .section p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .promises {
+      list-style: none;
+      margin-top: 2rem;
+    }
+
+    .promises li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: var(--accent-color);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .promises li:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .promises i {
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* Testimonial Section */
+    .testimonial-section {
+      background: var(--accent-color);
+      padding: 3rem 2rem;
+      margin: 3rem 0;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .testimonial-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+    }
+
+    .testimonial {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 3rem;
+      color: var(--secondary-color);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      font-weight: 500;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-links {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-tagline {
+      font-style: italic;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .page-content {
+        margin-left: 0;
+      }
+
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      main {
+        padding: 2rem 1rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .crisis-content {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .crisis-btn {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .section {
+        padding: 1.5rem;
+      }
+      
+    /* Open/Close Toggle Button for Mobile (the one JS creates, now #sidebar-open-btn) */
+    #sidebar-open-btn {
+        display: flex;
+        /* Ensure it's visible and flex for icon centering */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 2001;
+        /* High z-index for mobile */
+        background: #3498db;
+        color: #fff;
+        border: none;
+        padding: 0.7rem 1.2rem;
+        /* Original mobile padding */
+        border-radius: 8px;
+        font-size: 1.5rem;
+        /* Original mobile font size */
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.08);
+        transition: background 0.2s, opacity 0.3s, transform 0.3s;
+        opacity: 1;
+        /* Always visible on mobile */
+        visibility: visible;
+        transform: translateX(0);
+        /* No entry animation on mobile */
+    }
+
+    #sidebar-open-btn:hover {
+        /* Reset desktop hover transform */
+        transform: scale(1.05);
+    }
+
+    #sidebar-open-btn:hover i {
+        /* Reset desktop icon rotate */
+        transform: rotate(0deg);
+    }
+
+    #sidebar-open-btn.mobile-close-icon {
+        /* need to hide this button permnetly */
+        display: none;
+    }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .intro,
+    .section {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Focus States for Accessibility */
+    .btn:focus,
+    .crisis-btn:focus,
+    .breathing-btn:focus,
+    .sidebar a:focus {
+      outline: 2px solid var(--secondary-color);
+      outline-offset: 2px;
+    }
+
+    /* High Contrast Mode Support */
+    @media (prefers-contrast: high) {
+      :root {
+        --primary-color: #000;
+        --text-primary: #000;
+        --text-secondary: #000;
+        --border-color: #000;
+      }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    @media (min-width: 769px) {
+    body:not(.sidebar-closed) #sidebar-open-btn {
+        /* If sidebar is open on desktop, hide open button */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-30px);
+    }
+
+    #sidebar-close-btn {
+        /* Ensure internal close button is visible on desktop */
+        display: flex;
+    }
+}
+  </style>
+
 </head>
 
 <body>
+  <!-- Skip Navigation -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open navigation menu">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Crisis Support Banner -->
+  <div class="crisis-banner" role="banner" aria-label="Crisis support information">
+    <div class="crisis-content">
+      <span class="crisis-text">
+        <i class="fas fa-heart"></i>
+        Need immediate help?
+      </span>
+      <a href="tel:988" class="crisis-btn" aria-label="Call 988 Suicide and Crisis Lifeline">
+        <i class="fas fa-phone"></i> 988 - Crisis Lifeline
+      </a>
+      <a href="sms:741741" class="crisis-btn" aria-label="Text HOME to 741741 for Crisis Text Line">
+        <i class="fas fa-comments"></i> Text: HOME to 741741
+      </a>
+    </div>
+  </div>
+
   <!-- Sidebar Navigation -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
     <div class="sidebar-header">
       <div class="logo">
-        <img src="/assets/img/logo.svg" alt="I’m Lonely Logo" class="logo-img" />
-        <span>I’m Lonely</span>
+        <img src="https://pragadeeshfolio.netlify.app/pro.webp" alt="Logo" class="logo-img" />
+        <span>I'm Lonely</span>
       </div>
-      <button id="sidebar-close-btn" class="sidebar-toggle-btn" aria-label="Close sidebar">
+
+      <button id="sidebar-close-btn" class="sidebar-close-btn" aria-label="Close navigation">
         <i class="fas fa-times"></i>
       </button>
     </div>
-    <ul>
-      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="html/write.html"><i class="fas fa-pen"></i> Write</a></li>
-      <li><a href="html/call.html"><i class="fas fa-phone"></i> Call</a></li>
-      <li><a href="html/about.html"><i class="fas fa-user"></i> About</a></li>
-      <li><a href="html/support.html"><i class="fas fa-hand-holding-heart"></i> Support</a></li>
+    <ul role="menubar">
+      <li role="none"><a href="index.html" role="menuitem"><i class="fas fa-home"></i> Home</a></li>
+      <li role="none"><a href="html/write.html" role="menuitem"><i class="fas fa-pen"></i> Write</a></li>
+      <li role="none"><a href="html/call.html" role="menuitem"><i class="fas fa-phone"></i> Call</a></li>
+      <li role="none"><a href="html/about.html" role="menuitem"><i class="fas fa-user"></i> About</a></li>
+      <li role="none"><a href="html/support.html" role="menuitem"><i class="fas fa-hand-holding-heart"></i> Support</a>
+      </li>
     </ul>
   </aside>
 
   <!-- Page Content -->
-  <div class="page-content">
+  <div class="page-content" id="page-content">
     <div class="fixed-header">
       <header class="hero">
-        <h1>I’m Lonely</h1>
-        <p class="tagline">But You’re Not Alone</p>
+        <h1>I'm Lonely</h1>
+        <p class="tagline" style="color: #000; font-size: 15px;"><strong><em>But You're Not Alone</em></strong></p>
       </header>
     </div>
 
-
-    <main>
+    <main id="main-content">
       <section class="intro">
         <p>
           Some feelings are too heavy to explain.
           This space was made to help you lay them down, gently — and be heard in silence.
-          You don’t need to impress. You don’t need to justify.
+          You don't need to impress. You don't need to justify.
           Just a moment. Just your truth. Just someone who quietly listens.
         </p>
 
@@ -79,37 +1053,399 @@
         </p>
       </section>
 
-      <section class="why-section">
-        <h2>Why This Exists</h2>
-        <p>
-          I’ve always been the quiet one. The one who felt too much, but never spoke up.
-          I created this space for people like me —
-          people who carry emotions they can't explain,
-          who long for a safe place to just be heard… and maybe, feel lighter.
+      <!-- Immediate Comfort Section -->
+      <section class="comfort-section">
+        <h2>Take a Moment to Breathe</h2>
+        <div class="breathing-exercise">
+          <div class="breathing-circle" id="breathing-circle">
+            Breathe
+          </div>
+          <p class="breathing-text">
+            Sometimes the first step is just breathing. Click the circle above or the button below for a guided
+            breathing exercise.
+          </p>
+          <button class="breathing-btn" id="breathing-btn">
+            <i class="fas fa-leaf"></i> Start Breathing Exercise
+          </button>
+        </div>
+      </section>
+
+      <!-- What to Expect Section -->
+      <section class="expect-section">
+        <h2>What to Expect</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+          Here's how this works, step by step:
+        </p>
+        <div class="expect-timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-pen"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>1. You Share (When Ready)</h3>
+              <p>Write or call whenever you feel ready. There's no pressure, no deadline. Share as much or as little as
+                you need.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>2. I Listen (Really Listen)</h3>
+              <p>I read every word carefully. I don't judge, analyze, or try to fix. I just listen with my whole
+                attention.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>3. You Feel Heard</h3>
+              <p>Sometimes being truly heard is enough. If you want a gentle response, I'll offer one. If you just need
+                to be heard, that's perfect too.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="timeline-content">
+              <h3>Response Time</h3>
+              <p>I typically respond within 24-48 hours. For calls, I'll return them when I can give you my full,
+                undivided attention.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Creator Section -->
+      <section class="creator-section">
+        <h2>Who Am I?</h2>
+        <div>
+          <img src="https://pragadeeshfolio.netlify.app/pro.webp" alt="Logo" class="logo-img" />
+        </div>
+
+        <div class="creator-content">
+          <p>
+            I'm Pragadeesh, and I've always been the quiet one. The one who felt too much, but never spoke up.
+            I understand what it's like to carry emotions that feel too heavy to share.
+          </p>
+          <p>
+            I created this space because I believe everyone deserves to be heard — really heard — without judgment or
+            the pressure to be "fixed."
+            Sometimes we just need someone to witness our truth.
+          </p>
+          <p>
+            I'm not a therapist, but I am someone who listens with my whole heart. I'm here for you.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What I Promise</h2>
+        <ul class="promises">
+          <li><i class="fas fa-lock"></i> 100% private — no AI, no tracking, no data collection</li>
+          <li><i class="fas fa-user-secret"></i> No names needed — just your honesty</li>
+          <li><i class="fas fa-hand-holding-heart"></i> I won't judge. I'll only listen</li>
+          <li><i class="fas fa-phone-volume"></i> I'll respond when I can offer my full attention</li>
+          <li><i class="fas fa-shield-alt"></i> Your words stay between us — like a sacred trust</li>
+          <li><i class="fas fa-clock"></i> No pressure to respond quickly or at all</li>
+        </ul>
+      </section>
+
+      <!-- Testimonial Section -->
+      <section class="testimonial-section">
+        <h2>What Others Have Shared</h2>
+        <div class="testimonial">
+          <p>
+            I never thought someone would actually listen without trying to fix me.
+            For the first time in months, I felt heard. Thank you for this safe space.
+          </p>
+          <div class="testimonial-author">— A grateful heart</div>
+        </div>
+        <div class="testimonial">
+          <p>
+            The breathing exercise helped me calm down before I wrote my message.
+            Knowing someone cares enough to create this space means everything.
+          </p>
+          <div class="testimonial-author">— Finding peace</div>
+        </div>
+      </section>
+
+      <!-- Gentle Reminders Section -->
+      <section class="section">
+        <h2>Gentle Reminders</h2>
+        <div style="display: grid; gap: 1rem; margin-top: 2rem;">
+          <div
+            style="padding: 1rem; background: #fff5f5; border-left: 4px solid var(--crisis-color); border-radius: 8px;">
+            <p style="color: var(--crisis-color); font-weight: 500; margin-bottom: 0.5rem;">
+              <i class="fas fa-exclamation-triangle"></i> If you're in crisis
+            </p>
+            <p style="margin: 0; font-size: 0.9rem;">
+              Please reach out to crisis support immediately. You deserve immediate help and support.
+            </p>
+          </div>
+          <div
+            style="padding: 1rem; background: #f0fff4; border-left: 4px solid var(--success-color); border-radius: 8px;">
+            <p style="color: var(--success-color); font-weight: 500; margin-bottom: 0.5rem;">
+              <i class="fas fa-heart"></i> Your feelings are valid
+            </p>
+            <p style="margin: 0; font-size: 0.9rem;">
+              Whatever you're experiencing right now is real and important. You don't need to minimize or justify how
+              you feel.
+            </p>
+          </div>
+          <div
+            style="padding: 1rem; background: #fffaf0; border-left: 4px solid var(--warning-color); border-radius: 8px;">
+            <p style="color: var(--warning-color); font-weight: 500; margin-bottom: 0.5rem;">
+              <i class="fas fa-clock"></i> Take your time
+            </p>
+            <p style="margin: 0; font-size: 0.9rem;">
+              There's no rush. Share when you're ready, in your own words, at your own pace.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="section">
+        <h2>Questions You Might Have</h2>
+        <div style="display: grid; gap: 1.5rem; margin-top: 2rem;">
+          <div>
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">What if I don't know what to say?</h3>
+            <p style="margin: 0;">That's completely okay. You can start with "I don't know what to say" or just share
+              whatever is on your mind. There's no right or wrong way to reach out.</p>
+          </div>
+          <div>
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Do I have to share personal details?</h3>
+            <p style="margin: 0;">Not at all. Share only what feels comfortable. You can be completely anonymous if you
+              prefer.</p>
+          </div>
+          <div>
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">What if I change my mind after reaching out?
+            </h3>
+            <p style="margin: 0;">You can always let me know if you'd prefer I don't respond, or if you need space. Your
+              comfort and boundaries always come first.</p>
+          </div>
+          <div>
+            <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Is this professional therapy?</h3>
+            <p style="margin: 0;">No, this isn't therapy. I'm just someone who listens. If you need professional help, I
+              encourage you to reach out to a mental health professional.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA Section -->
+      <section class="section" style="text-align: center; background: var(--accent-color);">
+        <h2>You Don't Have to Carry This Alone</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Whatever brought you here, whatever you're feeling right now — it's valid, it's real, and it matters.
+          You deserve to be heard.
+        </p>
+        <div class="cta-buttons">
+          <a href="html/write.html" class="btn primary">
+            <i class="fas fa-pen"></i> Start Writing
+          </a>
+          <a href="html/call.html" class="btn secondary">
+            <i class="fas fa-phone"></i> Request a Call
+          </a>
+        </div>
+        <p class="note">
+          Take your time. I'll be here when you're ready.
         </p>
       </section>
 
-      <section class="promise-section">
-        <h2>What I Promise</h2>
-        <ul class="promises">
-          <li><i class="fas fa-lock"></i> 100% private — no AI, no tracking, no exposure</li>
-          <li><i class="fas fa-user-secret"></i> No names needed — just your honesty</li>
-          <li><i class="fas fa-hand-holding-heart"></i> I won’t judge. I’ll only listen</li>
-          <li><i class="fas fa-phone-volume"></i> I’ll call back only when I can offer my full attention</li>
-        </ul>
-      </section>
     </main>
 
     <footer>
       <nav class="footer-links">
         <a href="/html/about.html">Why I Made This</a> |
-        <a href="/html/support.html">Support This Space</a>
+        <a href="/html/support.html">Support This Space</a> |
+        <a href="/html/privacy.html">Privacy</a>
       </nav>
-      <p class="footer-tagline">This isn’t a product. It’s a presence.</p>
+      <p class="footer-tagline">This isn't a product. It's a presence.</p>
+      <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 1rem;">
+        Made with ❤️ by someone who understands
+      </p>
     </footer>
   </div>
 
-  <script src="/assets/js/script.js"></script>
+  <script>
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+    const pageContent = document.getElementById('page-content');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('open');
+      sidebar.classList.toggle('closed');
+      pageContent.classList.toggle('expanded');
+
+      // Update mobile menu icon
+      const icon = mobileMenuToggle.querySelector('i');
+      if (sidebar.classList.contains('open')) {
+        icon.className = 'fas fa-times';
+        mobileMenuToggle.setAttribute('aria-label', 'Close navigation menu');
+      } else {
+        icon.className = 'fas fa-bars';
+        mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+      }
+    }
+
+    mobileMenuToggle.addEventListener('click', toggleSidebar);
+    sidebarCloseBtn.addEventListener('click', toggleSidebar);
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 &&
+        !sidebar.contains(e.target) &&
+        !mobileMenuToggle.contains(e.target) &&
+        sidebar.classList.contains('open')) {
+        toggleSidebar();
+      }
+    });
+
+    // Breathing exercise functionality
+    const breathingBtn = document.getElementById('breathing-btn');
+    const breathingCircle = document.getElementById('breathing-circle');
+    let breathingActive = false;
+    let breathingInterval;
+
+    function startBreathingExercise() {
+      if (breathingActive) return;
+
+      breathingActive = true;
+      breathingBtn.textContent = 'Breathing...';
+      breathingBtn.disabled = true;
+
+      let phase = 0; // 0: inhale, 1: hold, 2: exhale, 3: hold
+      const phases = ['Breathe In', 'Hold', 'Breathe Out', 'Hold'];
+      const durations = [4000, 2000, 4000, 2000]; // in milliseconds
+
+      function nextPhase() {
+        breathingCircle.textContent = phases[phase];
+        breathingCircle.style.animation = phase === 0 ? 'breathe 4s ease-in-out' : 'none';
+
+        setTimeout(() => {
+          phase = (phase + 1) % 4;
+          if (phase === 0) {
+            // Completed one full cycle
+            breathingActive = false;
+            breathingBtn.textContent = 'Start Again';
+            breathingBtn.innerHTML = '<i class="fas fa-leaf"></i> Start Again';
+            breathingBtn.disabled = false;
+            breathingCircle.textContent = 'Breathe';
+            breathingCircle.style.animation = 'breathe 4s infinite';
+          } else {
+            nextPhase();
+          }
+        }, durations[phase]);
+      }
+
+      nextPhase();
+    }
+
+    breathingBtn.addEventListener('click', startBreathingExercise);
+    breathingCircle.addEventListener('click', startBreathingExercise);
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add subtle animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('.section, .comfort-section, .expect-section, .creator-section, .testimonial-section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Keyboard navigation improvements
+    document.addEventListener('keydown', (e) => {
+      // ESC key closes sidebar on mobile
+      if (e.key === 'Escape' && window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+        toggleSidebar();
+      }
+
+      // Enter key activates breathing exercise
+      if (e.key === 'Enter' && (e.target === breathingBtn || e.target === breathingCircle)) {
+        startBreathingExercise();
+      }
+    });
+
+    // Handle responsive behavior
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        sidebar.classList.remove('open', 'closed');
+        pageContent.classList.remove('expanded');
+        const icon = mobileMenuToggle.querySelector('i');
+        icon.className = 'fas fa-bars';
+        mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+      } else {
+        sidebar.classList.add('closed');
+        pageContent.classList.add('expanded');
+      }
+    });
+
+    // Initialize responsive state
+    if (window.innerWidth <= 768) {
+      sidebar.classList.add('closed');
+      pageContent.classList.add('expanded');
+    }
+
+    // Add gentle hover effects for interactive elements
+    document.querySelectorAll('.btn, .crisis-btn, .breathing-btn').forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        button.style.transform = 'translateY(-2px)';
+      });
+
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Accessibility improvements
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add focus indicators
+      document.querySelectorAll('a, button, [tabindex]').forEach(element => {
+        element.addEventListener('focus', () => {
+          element.style.outline = '2px solid var(--secondary-color)';
+          element.style.outlineOffset = '2px';
+        });
+
+        element.addEventListener('blur', () => {
+          element.style.outline = 'none';
+        });
+      });
+    });
+
+    // Console message for visitors
+    console.log('🌟 Thank you for visiting. Remember: you are not alone. 💙');
+  </script>
 </body>
 
 </html>

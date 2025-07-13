@@ -517,13 +517,13 @@ footer a:hover {
 
 .write-section {
     max-width: 700px;
-    /* margin: 0 auto; */
-    margin-top: 140px;
+    margin: 140px auto 0; /* Top margin + centered horizontally */
     padding: 4rem 1.5rem;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
+
 
 .write-section h1,
 .write-section h2 {
@@ -681,7 +681,7 @@ footer a:hover {
 .about-section {
     max-width: 720px;
     margin-top: 140px;
-    /* margin: 0 auto; */
+    margin: 140px auto 0;
     padding: 3rem 2rem;
     background: #fefefe;
     border-radius: 12px;
@@ -744,7 +744,7 @@ footer a:hover {
 
 .support-section {
     max-width: 620px;
-    /* margin: 0 auto; */
+    margin: 140px auto 0;
     margin-top: 140px;
     padding: 3rem 2rem;
     background: #fefefe;
