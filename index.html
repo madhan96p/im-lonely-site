@@ -365,7 +365,7 @@
       visibility: hidden;
       transform: translateX(-30px);
     }
-    
+
 
     body.sidebar-closed #sidebar-open-btn {
       /* Show on desktop when sidebar is closed */
@@ -869,9 +869,9 @@
       .section {
         padding: 1.5rem;
       }
-      
-    /* Open/Close Toggle Button for Mobile (the one JS creates, now #sidebar-open-btn) */
-    #sidebar-open-btn {
+
+      /* Open/Close Toggle Button for Mobile (the one JS creates, now #sidebar-open-btn) */
+      #sidebar-open-btn {
         display: flex;
         /* Ensure it's visible and flex for icon centering */
         align-items: center;
@@ -897,22 +897,22 @@
         visibility: visible;
         transform: translateX(0);
         /* No entry animation on mobile */
-    }
+      }
 
-    #sidebar-open-btn:hover {
+      #sidebar-open-btn:hover {
         /* Reset desktop hover transform */
         transform: scale(1.05);
-    }
+      }
 
-    #sidebar-open-btn:hover i {
+      #sidebar-open-btn:hover i {
         /* Reset desktop icon rotate */
         transform: rotate(0deg);
-    }
+      }
 
-    #sidebar-open-btn.mobile-close-icon {
+      #sidebar-open-btn.mobile-close-icon {
         /* need to hide this button permnetly */
         display: none;
-    }
+      }
     }
 
     /* Animations */
@@ -960,20 +960,31 @@
         transition-duration: 0.01ms !important;
       }
     }
+
     @media (min-width: 769px) {
-    body:not(.sidebar-closed) #sidebar-open-btn {
+      body:not(.sidebar-closed) #sidebar-open-btn {
         /* If sidebar is open on desktop, hide open button */
         opacity: 0;
         visibility: hidden;
         transform: translateX(-30px);
-    }
+      }
 
-    #sidebar-close-btn {
+      #sidebar-close-btn {
         /* Ensure internal close button is visible on desktop */
         display: flex;
+      }
     }
-}
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DM5T7E04CY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-DM5T7E04CY');
+  </script>
 
 </head>
 
